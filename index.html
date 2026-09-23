@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRACTHEME | Concours</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <header class="header-bubble glass-panel">
+        <div class="header-left">
+            <h1 class="logo">PRACTHEME</h1>
+        </div>
+        
+        <div class="tabs-container">
+            <div class="tab-slider" id="tab-slider"></div>
+            <button class="tab-btn active" data-target="tab-traduction">Traduction</button>
+            <button class="tab-btn" data-target="tab-correction">Correction</button>
+            <button class="tab-btn" data-target="tab-anki">Cartes Anki</button>
+        </div>
+        
+        <div class="header-right">
+            <span id="header-model-display" class="header-model-name">Gemini 3.7 Flash</span>
+            <button id="btn-settings" class="icon-btn" title="Réglages">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section id="tab-traduction" class="tab-pane active">
+            <div class="trad-container fade-in">
+                <div class="sentence-hero glass-panel-heavy">
+                    <div class="sentence-content" id="sentence-content">
+                        <div id="hypnotic-loader" class="hidden">
+                            <div class="hypnotic-orb"></div>
+                            <span class="hypnotic-text">Recherche dans les classiques...</span>
+                        </div>
+                        <div id="sentence-text-wrapper">
+                            <p id="source-text" class="literary-text-large">Prêt pour votre thème littéraire ?</p>
+                            <span id="source-author" class="author-text-elegant">Cliquez sur générer pour commencer.</span>
+                        </div>
+                    </div>
+                    <div class="separator"></div>
+                    <textarea id="user-translation" spellcheck="false" placeholder="Votre traduction en anglais..." rows="2"></textarea>
+                </div>
+                
+                <div class="trad-actions">
+                    <button id="btn-generate" class="apple-secondary-btn">Générer une phrase</button>
+                    <button id="btn-correct" class="apple-primary-btn">Corriger</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-correction" class="tab-pane">
+            <div class="correction-grid">
+                <div class="col-left">
+                    <div id="corr-ideal-block" class="phrase-block highlight-block glass-panel hidden">
+                        <div class="ideal-header">
+                            <h3>Traduction idéale <span style="text-transform:none; font-weight:normal; opacity:0.6; font-size:0.75rem;">(Sélectionnez un passage)</span></h3>
+                            <div class="context-actions">
+                                <button id="btn-explain-action" class="circle-btn" disabled title="Expliquer la sélection">?</button>
+                                <button id="btn-anki-action" class="circle-btn" disabled title="Créer une carte Anki">A</button>
+                            </div>
+                        </div>
+                        <p id="corr-ideal" class="literary-text text-primary-elegant"></p>
+                    </div>
+                    <div class="phrase-block glass-panel fade-up" style="animation-delay: 0.2s;">
+                        <h3>Votre traduction</h3>
+                        <p id="corr-user" class="mono-text"></p>
+                    </div>
+                    <div class="phrase-block glass-panel fade-up" style="animation-delay: 0.1s;">
+                        <h3>Phrase source</h3>
+                        <p id="corr-source" class="literary-text"></p>
+                    </div>
+                </div>
+                
+                <div class="col-right">
+                    <div id="correction-loader-inline" class="inline-loader hidden">
+                        <div class="hypnotic-orb small-orb"></div>
+                        <p class="hypnotic-text" style="margin-top:1.5rem; font-weight:500;">Analyse en cours...</p>
+                    </div>
+                    
+                    <div id="corr-explanations">
+                        <div class="empty-state">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.3; margin-bottom:1rem;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            <p>La correction détaillée apparaîtra ici.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOUVELLE STRUCTURE ANKI -->
+        <section id="tab-anki" class="tab-pane">
+            <div id="anki-layout" class="anki-layout hidden fade-in">
+                <!-- Zone Principale (Défilement interne) -->
+                <div id="anki-main" class="anki-main">
+                    <!-- Les cartes seront injectées ici par JS -->
+                </div>
+                
+                <!-- Barre latérale de droite (Bulle fixe) -->
+                <div class="anki-sidebar glass-panel">
+                    <div class="sidebar-section">
+                        <label>Type de cartes</label>
+                        <div class="format-selector" id="format-selector">
+                            <button class="format-btn active" data-format="Actif">Actif <span class="fmt-count">0</span></button>
+                            <button class="format-btn" data-format="Passif">Passif <span class="fmt-count">0</span></button>
+                            <button class="format-btn" data-format="Regle">Règle <span class="fmt-count">0</span></button>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section actions-section">
+                        <label>Sélection</label>
+                        <button id="btn-anki-toggle-all" class="apple-secondary-btn" style="width: 100%;">Tout sélectionner</button>
+                    </div>
+                    
+                    <div class="sidebar-section actions-section">
+                        <label>Exportation</label>
+                        <button id="btn-anki-export" class="apple-primary-btn" style="width: 100%;">Exporter (.tsv)</button>
+                    </div>
+
+                    <div class="sidebar-bottom">
+                         <button id="btn-reset-anki-trigger" class="apple-danger-btn" style="width: 100%;">Réinitialiser les cartes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="anki-empty" class="anki-container-empty">
+                <div class="empty-state">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.3; margin-bottom:1rem;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                    <p>Aucune carte générée pour le moment.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modale Réglages -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content glass-panel-heavy fade-in">
+            <h2>Configuration</h2>
+            <div class="form-group">
+                <label for="api-key-input">Clé API Google Gemini</label>
+                <input type="password" id="api-key-input" class="glass-input" placeholder="AIzaSy...">
+            </div>
+            
+            <div class="form-group">
+                <label>Modèle</label>
+                <div class="custom-select-wrapper" id="custom-select-container">
+                    <div class="custom-select-trigger glass-input">
+                        <span id="selected-model-text">Gemini 3.7 Flash</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="custom-options hidden" id="model-options">
+                        <div class="custom-option selected" data-value="gemini-3.7-flash">Gemini 3.7 Flash</div>
+                        <div class="custom-option" data-value="gemini-3.1-flash-lite">Gemini 3.1 Flash Lite</div>
+                        <div class="custom-option" data-value="gemini-3-flash-preview">Gemini 3 Flash (Preview)</div>
+                        <div class="custom-option" data-value="gemini-1.5-flash-latest">Gemini 1.5 Flash</div>
+                        <div class="custom-option" data-value="gemini-1.5-pro-latest">Gemini 1.5 Pro</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button id="btn-close-settings" class="apple-secondary-btn">Fermer</button>
+                <button id="btn-save-settings" class="apple-primary-btn">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Réinitialisation Anki -->
+    <div id="reset-modal" class="modal hidden">
+        <div class="modal-content glass-panel-heavy fade-in" style="width: 400px; text-align: center; padding: 2.5rem 2rem;">
+            <div style="margin-bottom: 1rem; color: #FF3B30;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+            </div>
+            <h2 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Réinitialiser les cartes</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 2rem;">
+                Êtes-vous sûr de vouloir supprimer définitivement toutes vos cartes Anki ? Cette action est irréversible.
+            </p>
+            <div class="modal-actions" style="justify-content: center; margin-top: 0;">
+                <button id="btn-cancel-reset" class="apple-secondary-btn">Annuler</button>
+                <button id="btn-confirm-reset" class="apple-primary-danger-btn">Supprimer tout</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>
