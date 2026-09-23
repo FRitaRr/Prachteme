@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a192f"/>
+      <stop offset="100%" stop-color="#14233a"/>
+    </linearGradient>
+    <linearGradient id="sparkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2997ff"/>
+      <stop offset="100%" stop-color="#0071e3"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Fond circulaire -->
+  <circle cx="256" cy="256" r="256" fill="url(#bgGrad)"/>
+  
+  <!-- Plume stylisée -->
+  <path d="M 390 110 C 290 130 200 230 160 340 C 210 290 270 260 330 240 C 270 270 220 300 180 340 C 260 210 330 160 390 110 Z" fill="#ffffff" opacity="0.95"/>
+  
+  <!-- Tige centrale de la plume -->
+  <path d="M 390 110 Q 250 250 140 370" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.95"/>
+
+  <!-- Étincelle IA principale à la pointe -->
+  <path d="M 140 310 Q 140 370 200 370 Q 140 370 140 430 Q 140 370 80 370 Q 140 370 140 310 Z" fill="url(#sparkGrad)"/>
+  
+  <!-- Étincelle IA secondaire en haut à droite -->
+  <path d="M 400 60 Q 400 85 425 85 Q 400 85 400 110 Q 400 85 375 85 Q 400 85 400 60 Z" fill="url(#sparkGrad)" opacity="0.8"/>
+</svg>
